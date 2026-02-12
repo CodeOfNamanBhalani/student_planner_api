@@ -94,3 +94,12 @@ class UserProfile(MethodView):
         current_user_id = get_jwt_identity()
         user = UserModel.query.get_or_404(int(current_user_id))
         return user
+
+@blp.route("/all")
+class AllUsers(MethodView):
+    @jwt_required()
+    @blp.response(200, UserSchema(many=True))
+    def get(self):
+        """Get all users"""
+        users = UserModel.query.all()
+        return users
