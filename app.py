@@ -29,7 +29,7 @@ def create_app():
     # JWT error handlers
     @jwt.expired_token_loader
     def expired_token_callback(jwt_header, jwt_payload):
-        return {"message": "Token has expired.", "error": "token_expired"}, 401
+        return {"message": "Token has expired", "error": "token_expired"}, 401
     
     @jwt.invalid_token_loader
     def invalid_token_callback(error):
